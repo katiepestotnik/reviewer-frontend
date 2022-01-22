@@ -4,11 +4,11 @@
     "slug": "movie-reviewer",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/sizedtheater.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/resizeblue.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,8 +21,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/sizedtheater.png",
+        "backgroundColor": "#000"
       }
     },
     "web": {

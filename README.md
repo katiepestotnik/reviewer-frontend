@@ -1,0 +1,3 @@
+Added Dependencies
+Styled Components
+Expo Constants

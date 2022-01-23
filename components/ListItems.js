@@ -20,8 +20,9 @@ function ListItems({ reviews, setReviews }) {
     return (
         <SwipeListView
             data={reviews}
-            keyExtractor={reviews.id}
-            renderItem={(data) => {
+            keyExtractor={(item) => item.id.toString()
+         }
+            renderItem={(data, index) => {
                 const RowText = data.item.id === swipedRow ? SwipedReviewTitle : ReviewTitle;
                 let images = data.item.movieImage
                 return (

@@ -9,21 +9,22 @@ import {
     ReviewTitle,
     ListHidden,
     ButtonHidden,
-    SwipedTodoText,
+    SwipedReviewTitle,
     colors
 } from '../styles/appStyles'
 
-function ListItems({ reviews, setReviews }) {
+function ListItems({ reviewApi, setReviewApi }) {
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
     
     return (
         <SwipeListView
-            data={reviews}
-            keyExtractor={(item) => item.id.toString()
+            data={reviewApi}
+            keyExtractor={(item) => item._id.toString()
          }
-            renderItem={(data, index) => {
-                const RowText = data.item.id === swipedRow ? SwipedReviewTitle : ReviewTitle;
+            renderItem={(data) => {
+                const RowText = data.item._id === swipedRow ? SwipedReviewTitle : ReviewTitle;
+                let keyVariable = data.item._id
                 let images = data.item.movieImage
                 return (
                     <List>
@@ -49,7 +50,7 @@ function ListItems({ reviews, setReviews }) {
             }}
             leftOpenValue={70}
             //must be string
-            previewRowKey={"1"}
+            previewRowKey={'1'}
             previewOpenValue={70}
             previewOpenDelay={2000}
             disableLeftSwipe={true}
@@ -58,7 +59,7 @@ function ListItems({ reviews, setReviews }) {
                 flex: 1, paddingBottom: 30, marginBottom: 40
             }}
             onRowOpen={(rowKey) => {
-                console.log(rowKey)
+                console.log(typeof rowKey)
                 setSwipedRow(rowKey)
             }}
             onRowClose={() => {

@@ -14,16 +14,16 @@ import {
 } from '../styles/appStyles'
 import StarRating from '../StarRating/StarRating';
 
-function ListItems({ reviewApi, setReviewApi}) {
+function ListItems({ reviewApi, setReviewApi, getReview}) {
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
-    const handleDelete = async(rowMap, rowKey) => {
-        console.log("this is rowKey: " + rowKey)
-        const newReviews = [...reviewApi];
-        const reviewIndex = reviewApi.findIndex((review) => review._id === rowKey);
-        console.log(reviewIndex)
-        newReviews.splice(reviewIndex, 1);
-        setReviewApi(newReviews);
+    const handleDelete = async (rowMap, rowKey) => {
+        fetch("https://movie-reviewer-backend.herokuapp.com/review/" + rowKey, {
+            method: 'delete'
+
+        }).then(response => response.json()).then(data => {
+            getReview()
+        })
     }
     return (
         <SwipeListView

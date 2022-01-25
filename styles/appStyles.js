@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   SafeAreaView,
   TextInput,
+  Image,
   Platform,
   ImageBackground
 } from "react-native";
@@ -16,6 +17,7 @@ export const colors = {
     main: "#1529df",
     light: "#d7dafb",
     black: "#000",
+    warning: '#ffd7d9'
   };
 
   //style variables
@@ -71,7 +73,7 @@ export const ReviewText = styled.Text`
   padding: 5px;
 `;
 export const ListHidden = styled.View`
-  background-color: ${colors.light};
+  background-color: ${colors.warning};
   flex: 1;
   width: 100%;
   padding: 15px;
@@ -87,8 +89,11 @@ export const ButtonHidden = styled.TouchableOpacity`
   align-items: center;
 `;
 export const SwipedReviewTitle = styled(ReviewTitle)`
-  color: ${colors.black};
+  color: red;
   font-style: italic;
   text-decoration: line-through;
 `;
+
+//star
+
 

@@ -12,6 +12,7 @@ import {
     SwipedReviewTitle,
     colors
 } from '../styles/appStyles'
+import StarRating from '../StarRating/StarRating';
 
 function ListItems({ reviewApi, setReviewApi }) {
     //key of swiped row
@@ -24,7 +25,6 @@ function ListItems({ reviewApi, setReviewApi }) {
          }
             renderItem={(data) => {
                 const RowText = data.item._id === swipedRow ? SwipedReviewTitle : ReviewTitle;
-                let keyVariable = data.item._id
                 let images = data.item.movieImage
                 return (
                     <List>
@@ -33,8 +33,9 @@ function ListItems({ reviewApi, setReviewApi }) {
                           <Text>
                             <ImageBackground source={{ uri: `${images}` }} resizeMode='cover' style={{height: 150, width: 150}} />
                           </Text>
-                          <ReviewText>{data.item.movieReview}</ReviewText>
-                          <ReviewText>{data.item.movieRating}</ReviewText>
+                            <ReviewText>{data.item.movieReview}</ReviewText>
+                            <StarRating/>
+                          {/* <ReviewText>Rating: {data.item.movieRating} stars</ReviewText> */}
                           </> 
                         </List>
                 )
@@ -49,17 +50,15 @@ function ListItems({ reviewApi, setReviewApi }) {
                 </ListHidden>)
             }}
             leftOpenValue={70}
-            //must be string
-            previewRowKey={'1'}
+            previewRowKey={'61ecd8c7eac5593608a9295a'}
             previewOpenValue={70}
-            previewOpenDelay={2000}
+            previewOpenDelay={1500}
             disableLeftSwipe={true}
             showsVerticalScrollIndicator={false}
             style={{
                 flex: 1, paddingBottom: 30, marginBottom: 40
             }}
             onRowOpen={(rowKey) => {
-                console.log(typeof rowKey)
                 setSwipedRow(rowKey)
             }}
             onRowClose={() => {

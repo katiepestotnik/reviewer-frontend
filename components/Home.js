@@ -16,7 +16,6 @@ function Home(props) {
         });
         const data = await response.json();
         setReviewApi(data)
-        console.log(reviewApi)
     }
     useEffect(() => getReview(), []);
  

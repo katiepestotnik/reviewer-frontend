@@ -6,7 +6,9 @@ import {useState, useCallback, useEffect} from 'react'
 import {Container} from './styles/appStyles'
 
 //components
-import Home from './components/Home'
+import Home from './components/Home';
+import StarRating from './StarRating/StarRating';
+
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }

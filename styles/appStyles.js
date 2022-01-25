@@ -15,6 +15,7 @@ import Constants from "expo-constants";
 //colors
 export const colors = {
     main: "#1529df",
+    middle: "#7985f2",
     light: "#d7dafb",
     black: "#000",
     warning: '#ffd7d9'
@@ -50,7 +51,7 @@ export const HeaderText = styled.Text`
 
 //listItems
 export const List = styled.TouchableHighlight`
-  background-color: ${colors.light};
+  background-color: ${colors.middle};
   min-height: 85px;
   width: 100%;
   padding: 15px;
@@ -71,6 +72,7 @@ export const ReviewText = styled.Text`
   letter-spacing: 1px;
   color: ${colors.main};
   padding: 5px;
+  font-weight: bold;
 `;
 export const ListHidden = styled.View`
   background-color: ${colors.warning};

@@ -24,7 +24,8 @@ function Home(props) {
           <Header />
             <ListItems
                 reviewApi={reviewApi}
-                setReviewApi={setReviewApi}/>
+                setReviewApi={setReviewApi}
+                getReview={getReview}/>
         </>
     );
 }

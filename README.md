@@ -10,3 +10,5 @@ Added Dependencies(expo install):
 styled-components,
 expo-constants,
 react-native-swipe-list-view
+
+console.log(reviewApi[0]._id)

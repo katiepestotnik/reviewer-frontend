@@ -14,20 +14,30 @@ import {
 } from '../styles/appStyles'
 import StarRating from '../StarRating/StarRating';
 
-function ListItems({ reviewApi, setReviewApi }) {
+function ListItems({ reviewApi, setReviewApi}) {
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
-    
+    const handleDelete = async(rowMap, rowKey) => {
+        console.log("this is rowKey: " + rowKey)
+        const newReviews = [...reviewApi];
+        const reviewIndex = reviewApi.findIndex((review) => review._id === rowKey);
+        console.log(reviewIndex)
+        newReviews.splice(reviewIndex, 1);
+        setReviewApi(newReviews);
+    }
     return (
         <SwipeListView
             data={reviewApi}
             keyExtractor={(item) => item._id.toString()
          }
             renderItem={(data) => {
+                //change text when swiped 
                 const RowText = data.item._id === swipedRow ? SwipedReviewTitle : ReviewTitle;
                 let images = data.item.movieImage
                 return (
-                    <List>
+                    <List
+                        underlayColor={colors.light}
+                        onPress={()=>console.log('tets')}>
                         <>
                           <RowText>{data.item.movieName}</RowText>
                           <Text>
@@ -40,9 +50,10 @@ function ListItems({ reviewApi, setReviewApi }) {
                         </List>
                 )
             }}
-            renderHiddenItem={() => {
+            renderHiddenItem={(data, rowMap) => {
                 return(<ListHidden>
-                    <ButtonHidden>
+                    <ButtonHidden
+                        onPress={()=>handleDelete(rowMap, data.item._id)}>
                         <MaterialCommunityIcons
                             name="delete-circle" size={50}
                             color="#ff1c27"/>
@@ -55,9 +66,6 @@ function ListItems({ reviewApi, setReviewApi }) {
             previewOpenDelay={1500}
             disableLeftSwipe={true}
             showsVerticalScrollIndicator={false}
-            style={{
-                flex: 1, paddingBottom: 30, marginBottom: 40
-            }}
             onRowOpen={(rowKey) => {
                 setSwipedRow(rowKey)
             }}

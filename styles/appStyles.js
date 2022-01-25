@@ -42,7 +42,7 @@ export const HeaderContainer = styled.View`
 `;
 
 export const HeaderText = styled.Text`
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
   color: ${colors.light};
   letter-spacing: 3px;
@@ -96,6 +96,61 @@ export const SwipedReviewTitle = styled(ReviewTitle)`
   text-decoration: line-through;
 `;
 
-//star
+// Modal
+export const ModalButton = styled.TouchableOpacity`
+width: 60px;
+height: 60px;
+background-color: ${colors.light};
+border-radius: 30px;
+justify-content: center;
+align-items: center;
+align-self: center;
+bottom: 10px;
+`;
+export const ModalContainer = styled.View`
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: ${colors.main};
+`;
 
+export const ModalView = styled.View`
+  background-color: ${colors.middle};
+  width: 100%;
+  padding: 5px;
+`;
 
+export const StyledInput = styled.TextInput`
+  width: 100%;
+  height: 60px;
+  background-color: ${colors.light};
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  color: ${colors.main};
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+`;
+
+export const ModalTouchable = styled.TouchableOpacity`
+  width: 60px;
+  height: 60px;
+  background-color: ${colors.light};
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+`;
+
+export const ModalInputButton = styled.View`
+  flex-direction: row;
+  margin: 20px;
+  justify-content: space-evenly
+  
+`;
+
+export const ModalIcon = styled.View`
+  align-items: center;
+  margin-bottom: 20px;
+`;

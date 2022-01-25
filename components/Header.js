@@ -1,5 +1,5 @@
-import { Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 
 //styled components
 import {
@@ -12,7 +12,7 @@ function Header(props) {
     return (
         <HeaderContainer>
             <HeaderText>Movie Reviewer</HeaderText>
-            <MaterialCommunityIcons name="movie-open-outline" size={40} color="#fff"/>
+            <MaterialCommunityIcons name="movie-open-outline" size={60} color="#fff" />
         </HeaderContainer>
     );
 }

@@ -12,9 +12,11 @@ import {
     SwipedReviewTitle,
     colors
 } from '../styles/appStyles'
+//components
 import StarRating from '../StarRating/StarRating';
 
-function ListItems({ reviewApi, setReviewApi, getReview}) {
+function ListItems({ reviewApi, setReviewApi, getReview }) {
+    console.log(reviewApi)
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
     const handleDelete = async (rowMap, rowKey) => {
@@ -37,7 +39,7 @@ function ListItems({ reviewApi, setReviewApi, getReview}) {
                 return (
                     <List
                         underlayColor={colors.light}
-                        onPress={()=>console.log('tets')}>
+                        onPress={()=>console.log('list item')}>
                         <>
                           <RowText>{data.item.movieName}</RowText>
                           <Text>
@@ -45,7 +47,7 @@ function ListItems({ reviewApi, setReviewApi, getReview}) {
                           </Text>
                             <ReviewText>{data.item.movieReview}</ReviewText>
                             <StarRating/>
-                          {/* <ReviewText>Rating: {data.item.movieRating} stars</ReviewText> */}
+                          <ReviewText>Rating: {data.item.movieRating} stars</ReviewText>
                           </> 
                         </List>
                 )

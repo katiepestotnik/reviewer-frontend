@@ -1,5 +1,5 @@
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { Text, ImageBackground, Image} from 'react-native';
+import { Text, ImageBackground} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 //styled components
@@ -15,7 +15,7 @@ import {
 //components
 import StarRating from '../StarRating/StarRating';
 
-function ListItems({ reviewApi, setReviewApi, getReview, setEditV, handleEdit, handleTriggerEdit}) {
+function ListItems({ reviewApi, getReview, handleTriggerEdit}) {
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
     const handleDelete = async (rowMap, rowKey) => {
@@ -27,7 +27,6 @@ function ListItems({ reviewApi, setReviewApi, getReview, setEditV, handleEdit, h
             getReview();
         });
     };
-
     return (
         <SwipeListView
             data={reviewApi}
@@ -68,7 +67,7 @@ function ListItems({ reviewApi, setReviewApi, getReview, setEditV, handleEdit, h
             }}
             leftOpenValue={70}
             //hard coded
-            previewRowKey={'61f03947a68dbcdcf4691ed7'}
+            previewRowKey={'61f1d8a03efbe8a369d6786e'}
             previewOpenValue={70}
             previewOpenDelay={1500}
             disableLeftSwipe={true}
@@ -82,5 +81,4 @@ function ListItems({ reviewApi, setReviewApi, getReview, setEditV, handleEdit, h
         />
     );
 };
-
 export default ListItems;

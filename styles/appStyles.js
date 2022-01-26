@@ -53,7 +53,7 @@ export const HeaderText = styled.Text`
 //listItems
 export const List = styled.TouchableHighlight`
   background-color: ${colors.middle};
-  min-height: 85px;
+  flex: 1
   width: 100%;
   padding: 15px;
   justify-content: space-around;

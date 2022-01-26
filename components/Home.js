@@ -5,7 +5,6 @@ import ListItems from './ListItems';
 import InputModal from './InputModal';
 
 function Home(props) {
-    const [editV, setEditV] = useState(false);
     const [reviewApi, setReviewApi] = useState(null);
     const getReview = async () => {
         const response = await fetch("https://movie-reviewer-backend.herokuapp.com/review", {
@@ -31,61 +30,43 @@ function Home(props) {
             body: JSON.stringify(review)
         }).then(response => response.json()).then(data => {
             getReview();
-        })
+        });
     };
             //edit
-        const handleEdit = async (item, rowKey) => {
-            console.log(rowKey)
-            fetch("https://movie-reviewer-backend.herokuapp.com/review/" + rowKey, {
-                method: 'put',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(item)
+    const handleEdit = async (item, rowKey) => {
+        fetch("https://movie-reviewer-backend.herokuapp.com/review/" + rowKey, {
+            method: 'put',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(item)
             }).then(response => response.json()).then(data => {
                 getReview();
             });
         };
-    //modal 
-    const [modalV, setModalV] = useState(false)
-    //input for the four fields
-    const [inputTitle, setInputTitle] = useState();
-    const [inputImage, setInputImage] = useState()
-    const [inputDescription, setInputDescription] = useState();
-    const [inputRating, setInputRating] = useState();
-
-
+        
     const [reviewEdit, setReviewEdit] = useState(null);
     const handleTriggerEdit = (item) => {
-        console.log(item.movieName)
         setReviewEdit(item);
         setModalV(true);
-        setInputTitle(item.movieName);
-        setInputImage(item.movieImage);
-        setInputDescription(item.movieReview);
-        setInputRating(item.movieRating);
-    }
-
+    };
+    //modal 
+    const [modalV, setModalV] = useState(false);
     return (
         <>
             <Header />
             <InputModal
                 modalV={modalV}
                 setModalV={setModalV}
-                setInputTitle={setInputTitle}
-                setInputImage={setInputImage}
-                setInputDescription={setInputDescription}
-                setInputRating={setInputRating}
                 handleAddReview={handleAddReview}
                 handleEdit={handleEdit}
                 reviewEdit={reviewEdit}
-                setReviewEdit={reviewEdit}/>
+            />
             <ListItems
                 reviewApi={reviewApi}
                 setReviewApi={setReviewApi}
                 getReview={getReview}
                 setModalV={setModalV}
-                setEditV={setEditV}
                 handleEdit={handleEdit}
                 handleTriggerEdit={handleTriggerEdit}
             />

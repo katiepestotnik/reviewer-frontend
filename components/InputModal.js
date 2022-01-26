@@ -1,6 +1,7 @@
 import { Modal } from 'react-native';
 import { Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { useForm, Controller } from 'react-hook-form';
+import { useState } from 'react';
 
 //styled components
 import {
@@ -18,7 +19,11 @@ import {
 
 
 function InputModal({
-    modalV, setModalV, setInputTitle, setInputImage, setInputDescription, setInputRating, handleAddReview, reviewEdit, setReviewEdit, handleEdit }) {
+    modalV, setModalV, handleAddReview, reviewEdit, handleEdit }) {
+    const [inputTitle, setInputTitle] = useState();
+    const [inputImage, setInputImage] = useState()
+    const [inputDescription, setInputDescription] = useState();
+    const [inputRating, setInputRating] = useState();
     //close  modal
     const handleClose = () => {
         setModalV(false);
@@ -45,7 +50,7 @@ function InputModal({
             handleEdit(data, reviewEdit._id);
             setModalV(false);
             reset('');
-        }
+        };
     };
     return (
         <>
@@ -148,5 +153,4 @@ function InputModal({
         </>
     );
 };
-
 export default InputModal;

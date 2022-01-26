@@ -5,10 +5,16 @@ Refresh Control used documentation:
 https://reactnative.dev/docs/refreshcontrol
 Star Rating:
 https://aboutreact.com/react-native-custom-star-rating-bar/
+Form with Formik: (could not get to work)
+https://levelup.gitconnected.com/adding-a-form-to-react-native-2f41b1dc0857
+Form Hook:(used this instead)
+https://react-hook-form.com/get-started/#ReactNative
 
 Added Dependencies(expo install):
 styled-components,
 expo-constants,
 react-native-swipe-list-view
+(npm install):
+formik
+react-hook-form
 
-console.log(reviewApi[0]._id)

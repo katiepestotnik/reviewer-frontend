@@ -63,7 +63,8 @@ function ListItems({ reviewApi, setReviewApi, getReview }) {
                 </ListHidden>)
             }}
             leftOpenValue={70}
-            previewRowKey={'61ecd8c7eac5593608a9295a'}
+            //hard coded
+            previewRowKey={'61f03947a68dbcdcf4691ed7'}
             previewOpenValue={70}
             previewOpenDelay={1500}
             disableLeftSwipe={true}

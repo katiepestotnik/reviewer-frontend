@@ -27,7 +27,22 @@ function Home(props) {
     const [inputTitle, setInputTitle] = useState();
     const [inputImage, setInputImage] = useState()
     const [inputDescription, setInputDescription] = useState()
-    const [inputRating, setInputRating]=useState()
+    const [inputRating, setInputRating] = useState()
+    
+    //add review
+    const handleAddReview = async (review) => {
+        fetch("https://movie-reviewer-backend.herokuapp.com/review", {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(review)
+        }).then(response => response.json()).then(data => {
+            getReview()
+        })
+    }
+
     return (
         <>
             <Header />
@@ -41,7 +56,8 @@ function Home(props) {
                 inputDescription={inputDescription}
                 setInputDescription={setInputDescription}
                 inputRating={inputRating}
-                setInputRating={setInputRating}/>
+                setInputRating={setInputRating}
+                handleAddReview={handleAddReview}/>
             <ListItems
                 reviewApi={reviewApi}
                 setReviewApi={setReviewApi}

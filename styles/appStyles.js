@@ -18,7 +18,8 @@ export const colors = {
     middle: "#7985f2",
     light: "#d7dafb",
     black: "#000",
-    warning: '#ffd7d9'
+    warning: '#ffd7d9',
+    invalid: '#aa0500'
   };
 
   //style variables
@@ -154,3 +155,10 @@ export const ModalIcon = styled.View`
   align-items: center;
   margin-bottom: 20px;
 `;
+//required field warning
+export const TextWarning = styled.Text`
+  color: ${colors.invalid};
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+`

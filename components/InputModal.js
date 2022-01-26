@@ -1,9 +1,6 @@
 import { Modal } from 'react-native';
-import { Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons'
-import { Text } from 'react-native';
+import { Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { useForm, Controller } from 'react-hook-form';
-import { useState } from 'react';
-
 
 //styled components
 import {
@@ -16,10 +13,11 @@ import {
     HeaderText,
     colors,
     StyledInput,
+    TextWarning
 } from '../styles/appStyles';
 
 
-function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage, inputImage, setInputDescription, inputDescription, setInputRating, inputRating, handleAddReview}) {
+function InputModal({ modalV, setModalV, setInputTitle, setInputImage, setInputDescription, setInputRating, handleAddReview, setReviewApi}) {
     //close  modal
     const handleClose = () => {
         setModalV(false);
@@ -29,7 +27,7 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
         setInputTitle(null);
     }
     //form
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
         defaultValues: {
             movieName: "",
             movieImage: "",
@@ -37,15 +35,10 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
             movieRating: "", 
         }
     });
-    const [newReview, setNewReview] = useState({
-        movieName: "",
-        movieImage: "",
-        movieReview: "",
-        movieRating: "",
-  });
     const onSubmit = data => {
-            handleAddReview(data)
-            setModalV(false)
+        handleAddReview(data);
+        setModalV(false);
+        reset('')
     };
 
     return (
@@ -62,7 +55,7 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
                     <ModalView>
                         <ModalIcon>
                             <HeaderText>Review</HeaderText>
-                        <MaterialCommunityIcons name="movie-edit" size={100} color={colors.light}/>
+                            <MaterialCommunityIcons name="movie-edit" size={100} color={colors.light}/>
                         </ModalIcon>
                     <Controller
                             control={control}
@@ -80,7 +73,7 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
                             )}
                             name="movieName"
                         />
-                        {errors.movieName && <Text>This is required</Text>}
+                        {errors.movieName && <TextWarning>This is required</TextWarning>}
                         <Controller
                             control={control}
                             rules={{
@@ -98,7 +91,7 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
                             )}
                             name="movieImage"
                         />
-                        {errors.movieImage && <Text>This is required</Text>}
+                        {errors.movieImage && <TextWarning>This is required</TextWarning>}
                         <Controller
                             control={control}
                             rules={{
@@ -115,11 +108,13 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
                             )}
                             name="movieReview"
                         />
-                        {errors.movieReview && <Text>This is required</Text>}
+                        {errors.movieReview && <TextWarning>This is required</TextWarning>}
                         <Controller
                             control={control}
                             rules={{
-                                maxLength:1
+                                maxLength: 1,
+                                max: 5,
+                                min: 1
                             }}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <StyledInput
@@ -132,20 +127,20 @@ function InputModal({ modalV, setModalV, inputTitle,setInputTitle, setInputImage
                             )}
                             name="movieRating"
                         />
-                    <ModalInputButton>
-                        <ModalTouchable onPress={handleClose}>
-                            <AntDesign name="closecircle" size={40} color={colors.main }/>
-                        </ModalTouchable>
-                        <ModalTouchable onPress={handleSubmit(onSubmit)}>
-                            <AntDesign name="checkcircle" size={40} color={colors.main }/>
+                        {errors.movieRating && <TextWarning>Must Be 1-5</TextWarning>}
+                        <ModalInputButton>
+                            <ModalTouchable onPress={handleClose}>
+                                <AntDesign name="closecircle" size={40} color={colors.main }/>
+                            </ModalTouchable>
+                            <ModalTouchable onPress={handleSubmit(onSubmit)}>
+                                <AntDesign name="checkcircle" size={40} color={colors.main }/>
                             </ModalTouchable>
                         </ModalInputButton>
-                        </ModalView>
+                    </ModalView>
                 </ModalContainer>
             </Modal>
-            
         </>
     );
-}
+};
 
 export default InputModal;

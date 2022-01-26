@@ -1,4 +1,4 @@
-import {SwipeListView} from 'react-native-swipe-list-view'
+import { SwipeListView } from 'react-native-swipe-list-view';
 import { Text, ImageBackground, Image} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -11,12 +11,11 @@ import {
     ButtonHidden,
     SwipedReviewTitle,
     colors
-} from '../styles/appStyles'
+} from '../styles/appStyles';
 //components
 import StarRating from '../StarRating/StarRating';
 
 function ListItems({ reviewApi, setReviewApi, getReview }) {
-    console.log(reviewApi)
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
     const handleDelete = async (rowMap, rowKey) => {
@@ -24,14 +23,14 @@ function ListItems({ reviewApi, setReviewApi, getReview }) {
             method: 'delete'
 
         }).then(response => response.json()).then(data => {
-            getReview()
-        })
-    }
+            getReview();
+        });
+    };
     return (
         <SwipeListView
             data={reviewApi}
             keyExtractor={(item) => item._id.toString()
-         }
+            }
             renderItem={(data) => {
                 //change text when swiped 
                 const RowText = data.item._id === swipedRow ? SwipedReviewTitle : ReviewTitle;
@@ -77,6 +76,6 @@ function ListItems({ reviewApi, setReviewApi, getReview }) {
             }}
         />
     );
-}
+};
 
 export default ListItems;

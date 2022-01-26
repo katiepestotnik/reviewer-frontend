@@ -36,7 +36,7 @@ function InputModal({
             movieRating: "", 
         }
     });
-    const onSubmit = (data, rowKey) => {
+    const onSubmit = (data) => {
         if (!reviewEdit) {
             handleAddReview(data);
             setModalV(false);

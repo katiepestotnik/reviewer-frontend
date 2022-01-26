@@ -43,7 +43,7 @@ function Home(props) {
                 },
                 body: JSON.stringify(item)
             }).then(response => response.json()).then(data => {
-                console.log(data)
+                getReview();
             });
         };
     //modal 
@@ -57,12 +57,13 @@ function Home(props) {
 
     const [reviewEdit, setReviewEdit] = useState(null);
     const handleTriggerEdit = (item) => {
+        console.log(item.movieName)
         setReviewEdit(item);
         setModalV(true);
-        // setInputTitle(item.movieName);
-        // setInputImage(item.movieImage);
-        // setInputDescription(item.movieReview);
-        // setInputRating(item.movieRating);
+        setInputTitle(item.movieName);
+        setInputImage(item.movieImage);
+        setInputDescription(item.movieReview);
+        setInputRating(item.movieRating);
     }
 
     return (

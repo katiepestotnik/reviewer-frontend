@@ -15,10 +15,11 @@ import {
 //components
 import StarRating from '../StarRating/StarRating';
 
-function ListItems({ reviewApi, setReviewApi, getReview }) {
+function ListItems({ reviewApi, setReviewApi, getReview, setEditV, handleEdit, handleTriggerEdit}) {
     //key of swiped row
     const [swipedRow, setSwipedRow] = useState(null);
     const handleDelete = async (rowMap, rowKey) => {
+        console.log(rowKey)
         fetch("https://movie-reviewer-backend.herokuapp.com/review/" + rowKey, {
             method: 'delete'
 
@@ -26,6 +27,7 @@ function ListItems({ reviewApi, setReviewApi, getReview }) {
             getReview();
         });
     };
+
     return (
         <SwipeListView
             data={reviewApi}
@@ -38,7 +40,10 @@ function ListItems({ reviewApi, setReviewApi, getReview }) {
                 return (
                     <List
                         underlayColor={colors.light}
-                        onPress={()=>console.log('list item')}>
+                        onPress={() => {
+                            console.log(data.item)
+                            handleTriggerEdit(data.item)
+                            }}>
                         <>
                           <RowText>{data.item.movieName}</RowText>
                           <Text>

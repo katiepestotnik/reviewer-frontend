@@ -18,3 +18,10 @@ react-native-swipe-list-view
 formik
 react-hook-form
 
+ App Icons png
+ 1024X1024 Size both android and ios
+
+ Splash Screen png
+ 1242X2436
+
+https://icons.expo.fyi/

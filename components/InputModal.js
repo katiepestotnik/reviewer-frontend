@@ -17,7 +17,8 @@ import {
 } from '../styles/appStyles';
 
 
-function InputModal({ modalV, setModalV, setInputTitle, setInputImage, setInputDescription, setInputRating, handleAddReview, setReviewApi}) {
+function InputModal({
+    modalV, setModalV, setInputTitle, setInputImage, setInputDescription, setInputRating, handleAddReview, reviewEdit, setReviewEdit, handleEdit }) {
     //close  modal
     const handleClose = () => {
         setModalV(false);
@@ -35,12 +36,17 @@ function InputModal({ modalV, setModalV, setInputTitle, setInputImage, setInputD
             movieRating: "", 
         }
     });
-    const onSubmit = data => {
-        handleAddReview(data);
-        setModalV(false);
-        reset('')
+    const onSubmit = (data, rowKey) => {
+        if (!reviewEdit) {
+            handleAddReview(data);
+            setModalV(false);
+            reset('');
+        } else {
+            handleEdit(data, reviewEdit._id);
+            setModalV(false);
+            reset('');
+        }
     };
-
     return (
         <>
             <ModalButton onPress={()=>setModalV(true)}>
@@ -94,9 +100,6 @@ function InputModal({ modalV, setModalV, setInputTitle, setInputImage, setInputD
                         {errors.movieImage && <TextWarning>This is required</TextWarning>}
                         <Controller
                             control={control}
-                            rules={{
-                                required: true
-                            }}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <StyledInput
                                     placeholder="What did you think of the movie?"
@@ -104,11 +107,11 @@ function InputModal({ modalV, setModalV, setInputTitle, setInputImage, setInputD
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
+                                    multiline={true}
                                 />
                             )}
                             name="movieReview"
                         />
-                        {errors.movieReview && <TextWarning>This is required</TextWarning>}
                         <Controller
                             control={control}
                             rules={{
@@ -135,6 +138,9 @@ function InputModal({ modalV, setModalV, setInputTitle, setInputImage, setInputD
                             <ModalTouchable onPress={handleSubmit(onSubmit)}>
                                 <AntDesign name="checkcircle" size={40} color={colors.main }/>
                             </ModalTouchable>
+                            {/* <ModalTouchable onPress={()=>console.log('edit')}>
+                                <MaterialCommunityIcons name="database-edit" size={40} color={colors.main }/>
+                            </ModalTouchable> */}
                         </ModalInputButton>
                     </ModalView>
                 </ModalContainer>
